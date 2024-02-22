@@ -1,8 +1,11 @@
+import Providers from "./commom/providers"
 import ApplicationRoutes from "./commom/routes"
 
 function App() {
    return (
-      <ApplicationRoutes />
+      <Providers>
+         <ApplicationRoutes />
+      </Providers>
    )
 }
 

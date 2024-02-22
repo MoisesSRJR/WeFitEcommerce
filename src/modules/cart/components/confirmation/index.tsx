@@ -9,7 +9,7 @@ export function Success() {
    return (
       <Container>
          <SuccessCard>
-            <span>Pedido realizado com sucesso!</span>
+            <p>Compra realizada com sucesso!</p>
             <img src={successImg} alt="Sucesso" />
          </SuccessCard>
          <div className="containerButton">

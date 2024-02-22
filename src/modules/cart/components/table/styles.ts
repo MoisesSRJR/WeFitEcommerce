@@ -5,6 +5,15 @@ export const TableContainer = styled.div`
    background-color: white;
    border-radius: 4px;
    padding: 24px;
+
+
+   @media (max-width: 768px) {
+      padding: 16px;
+      height: 75vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+   }
 `;
 
 export const HeaderTable = styled.div`
@@ -30,6 +39,7 @@ export const HeaderTable = styled.div`
       display: flex;
       justify-content: center;
       grid-column: span 3 / span 1;
+      margin-left: 16px;
    }
 
    @media (max-width: 768px) {
@@ -40,21 +50,29 @@ export const HeaderTable = styled.div`
 export const Products = styled.div`
    height: auto;
    margin-bottom: 21px;
+
+   @media (max-width: 768px) {
+      display: flex;
+      flex-direction: column;
+   }
 `;
 
 export const ProductsMobile = styled.div`
-   height: 430px;
+   height: auto;
    overflow-y: auto;
    margin-bottom: 21px;
    display: flex;
    flex-direction: column;
-   padding: 16px;
 `;
 
 export const List = styled.div`
    display: grid;
    grid-template-columns: repeat(12, minmax(0, 1fr));
    margin-bottom: 10px;
+
+   @media (max-width: 768px) {
+      display: flex;
+   }
 `;
 
 export const ListMobile = styled.div`
@@ -70,7 +88,6 @@ export const Column = styled.div`
    justify-content: space-between;
    width: 100%;
    height: 80px;
-   padding-left: 16px;
 
    @media (max-width: 371px) {
       padding-left: 5px;
@@ -85,7 +102,8 @@ export const Column = styled.div`
    }
 
    .priceMobile {
-      padding-left: 15%;
+      //padding-left: 15%;
+      color: ${colors.gray_400};
    }
 `;
 
@@ -100,6 +118,14 @@ export const SubTotal = styled.div`
    display: flex;
    flex-direction: column;
    text-align: end;
+
+   font-weight: 700;
+   font-size: 16px;
+   line-height: 21px;
+   font-weight: 700;
+   font-size: 12px;
+   line-height: 16px;
+   color: ${colors.gray_400};
 
    .subTotal {
       font-weight: 700;
@@ -116,10 +142,11 @@ export const Movie = styled.div`
       width: 89px;
       height: 114px;
    }
-   @media (max-width: 371px) {
+   @media (max-width: 768px) {
       img {
-         width: 69px;
-         height: 94px;
+         width: 64px;
+         height: 82px;
+         margin-right: 16px;
       }
    }
 `;
@@ -131,8 +158,12 @@ export const Names = styled.div`
    grid-column: span 3 / span 1;
    color: ${colors.gray_400};
 
-   @media (max-width: 850px) {
-      margin-left: 25px;
+   @media (max-width: 768px) {
+      flex-direction: row;
+      width: 100%;
+      justify-content: center;
+      align-items: start;
+      gap: 16px;
    }
 
    .name {
@@ -141,10 +172,6 @@ export const Names = styled.div`
       font-size: 14px;
       line-height: 19px;
       color: ${colors.gray_400};
-
-      @media (max-width: 850px) {
-         width: 100px;
-      }
    }
 
    .price {
@@ -153,6 +180,10 @@ export const Names = styled.div`
       font-size: 16px;
       line-height: 22px;
       margin-top: 8px;
+
+      @media (max-width: 768px) {
+         margin-top: 0;
+      }
    }
 `;
 
@@ -161,8 +192,8 @@ export const Count = styled.div`
    align-items: center;
    grid-column: span 2 / span 1;
 
-   @media (max-width: 794px) {
-      margin-left: 16%;
+   @media (max-width: 768px) {
+      display: none;
    }
 `;
 
@@ -173,8 +204,8 @@ export const PriceTotal = styled.div`
    grid-column: span 3 / span 1;
    color: ${colors.gray_400};
 
-   @media (max-width: 850px) {
-      margin-left: 8%;
+   @media (max-width: 768px) {
+      display: none;
    }
 
    span {
@@ -182,10 +213,26 @@ export const PriceTotal = styled.div`
       font-weight: 700;
       font-size: 16px;
       line-height: 22px;
+   }
+`;
 
-      @media (max-width: 850px) {
-         width: 100px;
-      }
+export const PriceTotalMobile = styled.div`
+   display: none;
+
+   @media (max-width: 768px) {
+      display: block;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      color: ${colors.gray_400};
+   }
+
+   span {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 22px;
    }
 `;
 
@@ -195,8 +242,9 @@ export const Trash = styled.div`
    align-items: center;
    grid-column: span 2 / span 1;
 
-   @media (max-width: 850px) {
-      margin-left: 13%;
+   @media (max-width: 768px) {
+      justify-content: start;
+      align-items: normal;
    }
 `;
 
@@ -209,10 +257,10 @@ export const FinalOrder = styled.div`
 
    @media (max-width: 768px) {
       justify-content: center;
-      flex-direction: column-reverse;
-      align-items: flex-end;
+      flex-direction: column;
+      align-items: center;
       height: 100px;
-      padding: 16px;
+      gap: 8px;
    }
 `;
 
@@ -220,7 +268,7 @@ export const Total = styled.div`
    height: 40px;
    display: flex;
    justify-content: space-between;
-   align-items: center;
+   align-items: end;
    font-style: normal;
    font-weight: 700;
    font-size: 14px;
@@ -231,13 +279,16 @@ export const Total = styled.div`
 
    @media (max-width: 768px) {
       padding-bottom: 5px;
+      width: 100%;
+      padding-right: 0;
+      justify-content: end;
    }
 
    .value {
       font-style: normal;
       font-weight: 700;
       font-size: 24px;
-      line-height: 33px;
+      line-height: 26px;
       color: ${colors.gray_400};
       margin-left: 16px;
    }
@@ -251,8 +302,17 @@ export const EmptyCart = styled.div`
    max-width: 447px;
    margin: 20px auto;
 
-   span {
+   p {
       color: ${colors.gray_400};
+      margin-block-start: 0;
+      margin-block-start: 0;
+      font-weight: 700;
+      font-size: 20px;
+
+      @media (max-width: 768px) {
+         text-align: center;
+         width: 82%;
+      }
    }
 
    img {
@@ -265,5 +325,9 @@ export const EmptyCart = styled.div`
       width: 100%;
       margin-top: 1px;
       margin-bottom: 0;
+
+      @media (max-width: 768px) {
+         margin-bottom: 32px;
+      }
    }
 `;

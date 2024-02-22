@@ -60,6 +60,5 @@ export const Result = styled.div`
 
    span {
       font-weight: 400;
-
    }
 `;

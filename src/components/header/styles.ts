@@ -8,6 +8,10 @@ export const Container = styled.div`
    justify-content: space-between;
    align-items: center;
    padding: 0 8px;
+
+   @media(max-width: 768px){
+padding: 0;
+    }
 `;
 
 export const Title = styled.div`
@@ -16,13 +20,19 @@ export const Title = styled.div`
    font-size: 20px;
    line-height: 27px;
    color: ${colors.white};
+   cursor: pointer;
 `;
 
-export const Cart = styled.div`
+export const Cart = styled.button`
    display: flex;
    gap: 10px;
    display: flex;
    justify-content: end;
+
+   background-color: transparent;
+   outline: none;
+   border: none;
+   cursor: pointer;
 
    @media (max-width: 768px) {
       justify-content: center;

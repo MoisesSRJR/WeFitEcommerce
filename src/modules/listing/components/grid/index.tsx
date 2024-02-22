@@ -1,56 +1,47 @@
+import { useState, useEffect } from 'react';
+import { useMovies } from "../../../cart/context";
+import { useMovieList } from "../../hook/useMovieList";
 import { Cards } from "../card";
 import Search from "../search";
 import { ContainerGrid } from "./styles";
+import { Loading } from '../../../../components/loading';
 
-type FieldSeatProps = {
+export function FieldSeat() {
+   const { AddedProduct } = useMovies();
+   const [searchTerm, setSearchTerm] = useState('');
+   const [isLoading, setIsLoading] = useState(true); 
+   const { movies } = useMovieList(searchTerm);
 
-};
+   useEffect(() => {
+      const timeout = setTimeout(() => {
+         setIsLoading(false);
+      }, 3000);
+      return () => clearTimeout(timeout);
+   }, []);
 
-export function FieldSeat({ }: FieldSeatProps) {
    return (
       <section>
          <Search
             placeholder="Search for movies"
+            onSearch={setSearchTerm}
          />
-         <ContainerGrid>
-            <Cards
-               price={10}
-               title="Movies Wefit"
-               image="https://s2-techtudo.glbimg.com/SSAPhiaAy_zLTOu3Tr3ZKu2H5vg=/0x0:1024x609/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2022/c/u/15eppqSmeTdHkoAKM0Uw/dall-e-2.jpg"
-               qtd={1}
-            />
-            <Cards
-               price={10}
-               title="Movies Wefit"
-               image="https://s2-techtudo.glbimg.com/SSAPhiaAy_zLTOu3Tr3ZKu2H5vg=/0x0:1024x609/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2022/c/u/15eppqSmeTdHkoAKM0Uw/dall-e-2.jpg"
-               qtd={1}
-            />
-            <Cards
-               price={10}
-               title="Movies Wefit"
-               image="https://s2-techtudo.glbimg.com/SSAPhiaAy_zLTOu3Tr3ZKu2H5vg=/0x0:1024x609/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2022/c/u/15eppqSmeTdHkoAKM0Uw/dall-e-2.jpg"
-               qtd={1}
-            />
-            <Cards
-               price={10}
-               title="Movies Wefit"
-               image="https://s2-techtudo.glbimg.com/SSAPhiaAy_zLTOu3Tr3ZKu2H5vg=/0x0:1024x609/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2022/c/u/15eppqSmeTdHkoAKM0Uw/dall-e-2.jpg"
-               qtd={1}
-            />
-            <Cards
-               price={10}
-               title="Movies Wefit"
-               image="https://s2-techtudo.glbimg.com/SSAPhiaAy_zLTOu3Tr3ZKu2H5vg=/0x0:1024x609/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2022/c/u/15eppqSmeTdHkoAKM0Uw/dall-e-2.jpg"
-               qtd={1}
-            />
-            <Cards
-               price={10}
-               title="Movies Wefit"
-               image="https://s2-techtudo.glbimg.com/SSAPhiaAy_zLTOu3Tr3ZKu2H5vg=/0x0:1024x609/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2022/c/u/15eppqSmeTdHkoAKM0Uw/dall-e-2.jpg"
-               qtd={1}
-            />
-         </ContainerGrid>
-      </section>
 
-   )
+         {isLoading ? (
+            <Loading />
+         ) : (
+            <ContainerGrid>
+               {movies?.map((product) => (
+                  <Cards
+                     key={product.id}
+                     title={product.title}
+                     price={product.price}
+                     image={product.image}
+                     id={product.id}
+                     onClick={() => AddedProduct({ ...product, qtd: 1 })}
+                  />
+               ))}
+            </ContainerGrid>
+         )}
+      </section>
+   );
 }

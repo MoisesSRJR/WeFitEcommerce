@@ -5,8 +5,8 @@ type ButtonProps = {
    isLoading?: boolean;
    marginLeft?: string;
    marginTop?: string;
-   notResizable?: boolean;
    width?: string;
+   background?: string;
 };
 
 export const Container = styled.button<ButtonProps>`
@@ -27,23 +27,25 @@ export const Container = styled.button<ButtonProps>`
    margin-top: ${(props) => props.marginTop && props.marginTop};
    cursor: pointer;
 
+   .items {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+   }
+
    &[type="submit"] {
-      background-color: ${colors.blue_100};
+      background-color: ${(props) => props.background || colors.blue_100};
       border: none;
       color: #fff;
+
+      @media (max-width: 768px) {
+         margin-top: 0;
+      }
    }
 
    &[type="submit"]:disabled {
       background-color: ${colors.blue_100};
       cursor: default;
    }
-
-   ${(props) =>
-      !props.notResizable &&
-      css`
-         @media (max-width: 768px) {
-            margin: 0;
-            width: 100%;
-         }
-      `}
 `;

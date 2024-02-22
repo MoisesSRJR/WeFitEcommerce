@@ -2,8 +2,6 @@ import { useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../commom/routes';
 
-
-
 export type DefaultRouteFunction = (a?: any) => void;
 
 export type RoutesNavigator = {
